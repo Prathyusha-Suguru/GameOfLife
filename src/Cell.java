@@ -1,19 +1,14 @@
 
 public class Cell extends GameOfLife{
-	public int countTotalLiveCells=super.s;
+	public int countTotalLiveCells=s;
 
-	public int countLiveCells(int[][] l, int p, int q) {
-		 int[][] board = new int[p][q];
-	        for (int i = 0; i < l.length; i++) {
-	            int row = l[i][0];
-	            int col = l[i][1];
-	            board[row][col] = 1;
-	        }
+	public int countLiveCells(boolean[][] l, int p, int q) {
+		int n=l.length;
         int lives = 0;
         for (int i = p - 1; i <= p + 1; i++) {
             for (int j = q - 1; j <= q + 1; j++) {
                 if (i != p || j != q) {
-                    if (i >= 0 && i < p && j >= 0 && j < q ){
+                    if (i >= 0 && i < n && j >= 0 && j < n && l[i][j] ){
                         lives += 1;
                     }
                 }

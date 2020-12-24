@@ -3,24 +3,26 @@ import org.junit.jupiter.api.Assertions;
 
 public class TestJUnit {
 	@Test
-	public void testBoard() {
+	public void board() {
 		GameOfLife g=new GameOfLife();
-		String s=(String)g.createBoard(g.p, g.q, g.listofLivecells);
-		//input (1,2)(1,3)(2,3)(3,3)---next generation
-		Assertions.assertEquals(".....\n..**.\n...*.\n...*.\n.....\n",s);
-		System.out.println("____TestCase board passed______");
-	}
-	@Test
-	public void testBoard1() {
-		Board b= new Board();
+		Board b=new Board();
+		String s=b.currentGeneration(g.p, g.q, g.listofLivecells);
 		
-		Assertions.assertEquals("....\n....\n....",b.createBoard().toString());
-		System.out.println("____TestCase 2 passed______");
+		Assertions.assertEquals(".*...\n.**..\n.**..\n.....\n....*\n",s);
+		System.out.println("____TestCase board  passed______");
 	}
 	@Test
-	public void test2(){
+	public void nextGeneration(){
+		GameOfLife g=new GameOfLife();
+		Board b= new Board();
+		String s=b.generateNextGeneration(g.createBoard(g.p, g.q, g.listofLivecells));
+		Assertions.assertEquals(".**..\n*....\n.**..\n.....\n.....\n",s);
+		System.out.println("____TestCase next generation  passed______");
+	}
+	@Test
+	public void cell(){
 		Cell c=new Cell();
-		Assertions.assertEquals(4,c.countTotalLiveCells);
+		Assertions.assertEquals(6,c.countTotalLiveCells);
 		System.out.println("____TestCase cell passed______");
 	}
 }
