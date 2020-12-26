@@ -1,21 +1,17 @@
 public class Board extends Cell{
-	//boolean[][] changeBoard=new boolean[p][q];
-	public String currentGeneration(int p, int q, int l[][]) {
+	public String currentGeneration(int p, int q, int l[][]) {       //for getting current generation
 		//printBoard(createBoard(p, q, l));
 		return printBoard(createBoard(p, q, l));
 	}
-	public String generateNextGeneration(boolean l[][],int  k ) {
-		int n =l.length;
-		boolean[][] currentBoard=l;
-		boolean[][] newBoard=new boolean[n][n];
-		int count=1;
-		while(count<=k) {
+	public boolean[][] requiredGeneration(boolean l[][],int  k ) {      // class to get required generation
+		int n =l.length;                                                // getting length of list
+		boolean[][] newBoard=new boolean[n][n];                          // created the new board to update the next generation during iterations
 		for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                int ilives = countLiveCells(currentBoard, i, j);
+                int ilives = countLiveCells(l, i, j);
 
-                if (currentBoard[i][j]) {
-                    if (ilives < 2) {
+                if (l[i][j]) {
+                    if (ilives < 2) {                                    
                         newBoard[i][j] = false;
                     } else if (ilives <= 3) {
                         newBoard[i][j] = true;
@@ -29,11 +25,11 @@ public class Board extends Cell{
                 }
             }
 		}
-		//this.changeBoard = newBoard;
-		currentBoard=newBoard;
-		count=count+1;
+		while(k>1) {													// loop to get required generation 
+			newBoard=requiredGeneration(newBoard,1);
+			k--;
 		}
-		return printBoard(currentBoard);
+		return newBoard;
 	}	
 }
 	

@@ -2,7 +2,7 @@
 public class Cell extends GameOfLife{
 	public int countTotalLiveCells=s;
 
-	public int countLiveCells(boolean[][] l, int p, int q) {
+	public int countLiveCells(boolean[][] l, int p, int q) {                // class to get the live cells count
 		int n=l.length;
         int lives = 0;
         for (int i = p - 1; i <= p + 1; i++) {
