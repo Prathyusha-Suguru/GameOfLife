@@ -78,10 +78,10 @@ public class UserInterface {
 	// There are two Boards. The previous Board and the new Board.  Once the new Board has been
 	// displayed, it becomes the previous Board for the generation of the next new Board.
 	private Board oddGameBoard = new Board(boardSizeWidth,boardSizeHeight);		// The Board for odd frames of the animation
-	private Pane oddCanvas = new Pane();			// Pane that holds its graphical representation
+	//private Pane oddCanvas = new Pane();			// Pane that holds its graphical representation
 	
 	private Board evenGameBoard =  new Board(boardSizeWidth,boardSizeHeight);	// The Board for even frames of the animation
-	private Pane evenCanvas = new Pane();			// Pane that holds its graphical representation
+	//private Pane evenCanvas = new Pane();			// Pane that holds its graphical representation
 
 	private boolean toggle = true;					// A two-state attribute that specifies which
 													// is the previous Board and which is the new
@@ -284,6 +284,7 @@ public class UserInterface {
 		    	idx++;
 		    }
 		    oddGameBoard.createBoard(l);
+		    draw();
 		    
 			// Your code goes here......
 			
@@ -325,14 +326,15 @@ public class UserInterface {
 	public void runSimulation(){
 		// Use the toggle to flip back and forth between the current generation and next generation boards.
 		if(toggle) {
-			evenGameBoard.array=oddGameBoard.requiredGeneration(oddGameBoard.array,1);
+			evenGameBoard.array=oddGameBoard.requiredGeneration(oddGameBoard.array);
 			toggle=false;
 		}
 		else
 		{
-			oddGameBoard.array=evenGameBoard.requiredGeneration(evenGameBoard.array,1);
+			oddGameBoard.array=evenGameBoard.requiredGeneration(evenGameBoard.array);
 			toggle=true;
 		}
+		draw();
 		// Your code goes here...
 	}
 
@@ -411,5 +413,32 @@ public class UserInterface {
 		// Should the execution reach here, the input file appears to be valid
 		errorMessage_FileContents = "";
 		return true;							// End of file found 
+	}
+	public void draw() {
+		Board board=new Board(boardSizeWidth,boardSizeHeight);
+		if(toggle) {
+			board=oddGameBoard;
+			
+		}
+		else
+		{
+			board=evenGameBoard;
+		}
+		for(int i=0;i<board.p;i++) {
+			for(int j=0;j<board.q;j++) {
+				if(board.array[i][j]==true) {
+					Rectangle rectangle = new Rectangle(5,5,Color.GREEN);
+					rectangle.relocate(6*i,6*j);
+					window.getChildren().add(rectangle);
+
+				}
+//				else {
+//					Rectangle rectangle = new Rectangle(5,5,Color.RED);
+//					rectangle.relocate(6*i,6*j);
+//					window.getChildren().add(rectangle);
+//					
+//				}
+			}
+		}
 	}
 }
