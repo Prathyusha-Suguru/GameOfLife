@@ -46,7 +46,7 @@ public class UserInterface {
 	private int marginWidth = 20;
 
 	// The User Interface widgets used to control the user interface and start and stop the simulation
-	private Label label_FileName = new Label("Enter the name of the game's file here:");
+	private Label label_FileName = new Label("Conway Game of Life - Prathyusha Reddy:");
 	private TextField text_FileName = new TextField();
 	private Button button_Load = new Button("Load the pattern");
 	private Button button_Start = new Button("Start");
@@ -151,10 +151,10 @@ public class UserInterface {
 		button_Start.setDisable(true);
 
 		// The following set up the control panel messages for messages and information about errors
-		setupLabelUI(message_FileFound, "Arial", 18, 150, Pos.BASELINE_LEFT, 350, controlPanelHeight);
+		setupLabelUI(message_FileFound, "Arial", 18, 150, Pos.BASELINE_LEFT, 400, controlPanelHeight);
 		message_FileFound.setStyle("-fx-text-fill: green; -fx-font-size: 18;");
 
-		setupLabelUI(message_FileNotFound, "Arial", 18, 150, Pos.BASELINE_LEFT, 350, controlPanelHeight);
+		setupLabelUI(message_FileNotFound, "Arial", 18, 150, Pos.BASELINE_LEFT, 400, controlPanelHeight);
 		message_FileNotFound.setStyle("-fx-text-fill: red; -fx-font-size: 18;");
 
 		setupLabelUI(message_ErrorDetails, "Arial", 16, ConwayMain.WINDOW_WIDTH, Pos.BASELINE_LEFT, 20, 
@@ -317,7 +317,7 @@ public class UserInterface {
 	private void stopConway() {
 		// Your code goes here to display the current state of the board.
 		System.out.println("Game is stopping....");
-		System.exit(0);
+		System.exit(1);
 	}
 
 	/**********
